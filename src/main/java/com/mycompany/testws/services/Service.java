@@ -5,6 +5,7 @@
  */
 package com.mycompany.testws.services;
 
+import com.mycompany.testws.dao.personDao;
 import com.mycompany.testws.model.person;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ import javax.ws.rs.core.MediaType;
 @Path("Service")
 public class Service {
     
-    private static Map<Integer,person> persons=new HashMap<Integer,person>();
+   /* private static Map<Integer,person> persons=new HashMap<Integer,person>();
     
     static {
        for(int i=0;i<10;i++){
@@ -38,14 +39,16 @@ public class Service {
        
        }
     
-    }
+    }*/
+    
+    private personDao personDao=new personDao();
     
     @GET
     @Path("getpersonByIdXML/{id}")
     @Produces(MediaType.APPLICATION_XML)
     public person getpersonByIdXML(@PathParam("id")int id){
        
-        return persons.get(id);
+        return personDao.getpersonById(id);
     }
     
     @GET
@@ -53,16 +56,16 @@ public class Service {
     @Produces(MediaType.APPLICATION_JSON)
     public person getpersonByIdJASON(@PathParam("id")int id){
        
-        return persons.get(id);
+        return personDao.getpersonById(id);
     }
     
     
     @GET
     @Path("getAllpersonsInXML/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public List<person> getAllpersonsInXML(){
        
-        return new ArrayList<person>(persons.values());
+        return personDao.getAllpersons();
     }
     
     

@@ -1,19 +1,38 @@
 
+package com.mycompany.testws.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
 
 /**
  *
  * @author kalsara
  */
 
-public class person {
-    
-    @XmlRootElement(name="person")
+@Entity
+@Table(name="HUMANS")  
+@XmlRootElement(name="person")
 @XmlType(propOrder={"id","fullName","age"})
 public class person {
-    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+       
+    @Column(name="ID")
     private int id;
+    @Column(name="FULLNAME")
     private String fullName;
+    @Column(name="AGE")
     private int age;
+    
 @XmlElement
     public int getId() {
         return id;
